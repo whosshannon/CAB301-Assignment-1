@@ -5,6 +5,7 @@ namespace Library_Program
     {
         public MemberCollection()
         {
+            // :)
         }
     }
 }

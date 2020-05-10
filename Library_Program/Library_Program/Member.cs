@@ -28,6 +28,9 @@ namespace Library_Program
             }
         }
 
-        
+        public int GetPhone()
+        {
+            return phone;
+        }
     }
 }

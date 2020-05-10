@@ -36,6 +36,7 @@
     <Compile Include="MovieCollection.cs" />
     <Compile Include="Member.cs" />
     <Compile Include="MemberCollection.cs" />
+    <Compile Include="BinarySearchTree.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -31,7 +31,6 @@ namespace Library_Program
         GenreType genre;
         ClassificationType classification;
         int copies;
-        int currentlyRented;
         int copiesAvailable;
         int timesRented;
 
@@ -54,28 +53,45 @@ namespace Library_Program
             genre = givenGenre;
             classification = givenClassification;
             copies = numberOfCopies;
-            currentlyRented = 0;
-            copiesAvailable = copies - currentlyRented;
+            copiesAvailable = copies;
             timesRented = 0;
         }
 
-        public string getTitle()
+        public string GetTitle()
         {
             return title;
         }
 
-        public string getStarring()
+        public string GetStarring()
         {
             return string.Join(", ", starring);
         }
 
-        public string displayMovie()
+        public string DisplayMovie()
         {
-            string movieInfo = "Title: " + title + "\n\t Starring: " + getStarring() +
+            string movieInfo = "Title: " + title + "\n\t Starring: " + GetStarring() +
                 "\n\t Director: " + director + ",\n\t Runtime: " + duration +
                 "minutes \n\t Genre: " + genre + "\n\t Classification: " + classification +
-                "\n\t Copies available: " + copiesAvailable;
+                "\n\t Times rented: " + timesRented + "\n\t Copies available: " + copiesAvailable;
             return movieInfo;
+        }
+
+        public void BorrowMovie()
+        {
+            if (copiesAvailable > 0)
+            {
+                copiesAvailable -= 1;
+            }
+            else
+            {
+                throw new Exception("didnt work");
+            }
+        }
+
+        public void ReturnMovie()
+        {
+            copiesAvailable += 1;
+            timesRented += 1;
         }
     }
 }
