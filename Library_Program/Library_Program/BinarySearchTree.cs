@@ -11,11 +11,16 @@ namespace Library_Program
         }
 
         public Node root;
+
         public BinarySearchTree()
         {
             root = null;
         }
 
+        /// <summary>
+        /// Inserts a new value into the Binary Search Tree
+        /// </summary>
+        /// <param name="data">The value that you would like to insert into the BST</param>
         public void Insert(string data)
         {
             Node newNode = new Node();
@@ -56,6 +61,11 @@ namespace Library_Program
             }
         }
 
+        /// <summary>
+        /// Searches for a value within the BST
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns>Returns a node corresponding to the searched value, node has value of "-1" if search is unsuccessfull</returns>
         public Node Search(string data)
         {
             Node position = new Node();
@@ -112,6 +122,10 @@ namespace Library_Program
             return position;
         }
 
+        /// <summary>
+        /// Deletes a value from the given BST
+        /// </summary>
+        /// <param name="data">the value of the node to be deleted</param>
         public void Delete(string data)
         {
             Node current = root;
