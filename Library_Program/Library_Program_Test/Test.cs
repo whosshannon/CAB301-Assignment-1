@@ -173,28 +173,88 @@ namespace Library_Program_Test
 
             bst.Delete("H");
 
-            Assert.That(bst.Search("H") == null);
+            Assert.That(bst.Search("H").value == "-1");
 
         }
 
-        //[Test()]
-        //public void BSTDeleteNodeWithOneChild()
-        //{
-        //    bst = new Library_Program.BinarySearchTree();
-        //    bst.Insert("D");
-        //    bst.Insert("B");
-        //    bst.Insert("A");
-        //    bst.Insert("C");
-        //    bst.Insert("F");
-        //    bst.Insert("G");
-        //    bst.Insert("E");
-        //    bst.Insert("H");
+        [Test()]
+        public void BSTDeleteNodeWithOneChildOriginalDeleted()
+        {
+            bst = new Library_Program.BinarySearchTree();
+            bst.Insert("D");
+            bst.Insert("B");
+            bst.Insert("A");
+            bst.Insert("C");
+            bst.Insert("F");
+            bst.Insert("G");
+            bst.Insert("E");
+            bst.Insert("H");
 
-        //    bst.Delete("G");
+            bst.Delete("G");
 
-        //    Assert.That(bst.root.rChild.rChild.rChild.value == null);
+            Assert.That(bst.Search("G").value == "-1");
 
-        //}
+        }
 
+        [Test()]
+        public void BSTDeleteNodeWithOneChildChildUpdated()
+        {
+            bst = new Library_Program.BinarySearchTree();
+            bst.Insert("D");
+            bst.Insert("B");
+            bst.Insert("A");
+            bst.Insert("C");
+            bst.Insert("F");
+            bst.Insert("G");
+            bst.Insert("E");
+            bst.Insert("H");
+
+            bst.Delete("G");
+
+            Assert.That(bst.root.rChild.rChild.value == "H");
+
+        }
+
+        [Test()]
+        public void BSTDeleteNodeWithTwoChildrenOrginalReplaced()
+        {
+            bst = new Library_Program.BinarySearchTree();
+            bst.Insert("D");
+            bst.Insert("B");
+            bst.Insert("A");
+            bst.Insert("C");
+            bst.Insert("F");
+            bst.Insert("E");
+            bst.Insert("I");
+            bst.Insert("H");
+            bst.Insert("G");
+            bst.Insert("J");
+
+            bst.Delete("I");
+
+            Assert.That(bst.root.rChild.rChild.value == "H");
+
+        }
+
+        [Test()]
+        public void BSTDeleteNodeWithTwoChildrenchildrenUpdated()
+        {
+            bst = new Library_Program.BinarySearchTree();
+            bst.Insert("D");
+            bst.Insert("B");
+            bst.Insert("A");
+            bst.Insert("C");
+            bst.Insert("F");
+            bst.Insert("E");
+            bst.Insert("I");
+            bst.Insert("H");
+            bst.Insert("G");
+            bst.Insert("J");
+
+            bst.Delete("I");
+
+            Assert.That(bst.root.rChild.rChild.lChild.value == "G");
+
+        }
     }
 }

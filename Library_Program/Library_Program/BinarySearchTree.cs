@@ -123,7 +123,7 @@ namespace Library_Program
                 if (string.Compare(data, current.value) == -1)
                 {
                     isLeftChild = true;
-                    current = current.rChild;
+                    current = current.lChild;
                 }
                 else
                 {
@@ -132,19 +132,71 @@ namespace Library_Program
                 }
                 //if (current == null) { return false; }
             }
-            if ((current.lChild == null) & (current.rChild == null))
+
+            if (current.lChild == null && current.rChild == null)
             {
-                if (current == root)
-                {
-                    root = null;
-                }
-                else if (isLeftChild)
+                //node to be deleted is a leaf
+                if (isLeftChild)
                 {
                     parent.lChild = null;
                 }
                 else
-                { 
+                {
                     parent.rChild = null;
+                }
+            }
+            else if (current.lChild != null && current.rChild == null)
+            {
+                //node to be deleted has one left child
+                if (isLeftChild)
+                {
+                    parent.lChild = current.lChild;
+                }
+                else
+                {
+                    parent.rChild = current.lChild;
+                }
+            }
+            else if (current.lChild == null && current.rChild != null)
+            {
+                //node to be deleted has one right child
+                if (isLeftChild)
+                {
+                    parent.lChild = current.rChild;
+                }
+                else
+                {
+                    parent.rChild = current.rChild;
+                }
+            }
+            else if (current.lChild != null && current.rChild != null)
+            {
+                //node to be deleted has two children
+                Node rightmostOfLeft = current.lChild;
+                bool lowest = false;
+
+                while (!lowest)
+                {
+                    if (rightmostOfLeft.rChild != null)
+                    {
+                        rightmostOfLeft = rightmostOfLeft.rChild;
+                    }
+                    else
+                    {
+                        lowest = true;
+                    }
+                }
+
+                Delete(rightmostOfLeft.value);
+
+                if (isLeftChild)
+                {
+                    parent.lChild = rightmostOfLeft;
+                }
+                else
+                {
+                    parent.rChild = rightmostOfLeft;
+
                 }
             }
         }
