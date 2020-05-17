@@ -5,7 +5,7 @@ namespace Library_Program
     {
         public class Node
         {
-            public string value;
+            public Movie value;
             public Node lChild;
             public Node rChild;
         }
@@ -21,7 +21,7 @@ namespace Library_Program
         /// Inserts a new value into the Binary Search Tree
         /// </summary>
         /// <param name="data">The value that you would like to insert into the BST</param>
-        public void Insert(string data)
+        public void Insert(Movie data)
         {
             Node newNode = new Node();
             newNode.value = data;
@@ -39,7 +39,7 @@ namespace Library_Program
                 while (searching)
                 {
                     parent = current;
-                    if (string.Compare(newNode.value, current.value) == -1)
+                    if (string.Compare(newNode.value.GetTitle(), current.value.GetTitle()) == -1)
                     {
                         current = current.lChild;
                         if (current == null)
@@ -48,7 +48,7 @@ namespace Library_Program
                             searching = false;
                         }
                     }
-                    else if (string.Compare(newNode.value, current.value) == 1)
+                    else if (string.Compare(newNode.value.GetTitle(), current.value.GetTitle()) == 1)
                     {
                         current = current.rChild;
                         if (current == null)
@@ -72,11 +72,10 @@ namespace Library_Program
 
             if (root == null)
             {
-                position.value = "-1";
-                return position;
+                return null;
             }
 
-            if (root.value == data)
+            if (root.value.GetTitle() == data)
             {
                 position = root;
                 return position;
@@ -90,10 +89,10 @@ namespace Library_Program
                 while (searching)
                 {
                     parent = current;
-                    if (string.Compare(data, current.value) == -1)
+                    if (string.Compare(data, current.value.GetTitle()) == -1)
                     {
                         current = current.lChild;
-                        if (current.value == data)
+                        if (current.value.GetTitle() == data)
                         {
                             position = current;
                             return position;
@@ -103,10 +102,10 @@ namespace Library_Program
                             searching = false;
                         }
                     }
-                    else if (string.Compare(data, current.value) == 1)
+                    else if (string.Compare(data, current.value.GetTitle()) == 1)
                     {
                         current = current.rChild;
-                        if (current.value == data)
+                        if (current.value.GetTitle() == data)
                         {
                             position = current;
                             return position;
@@ -118,15 +117,14 @@ namespace Library_Program
                     }
                 }
             }
-            position.value = "-1";
-            return position;
+            return null;
         }
 
         /// <summary>
         /// Deletes a value from the given BST
         /// </summary>
         /// <param name="data">the value of the node to be deleted</param>
-        public void Delete(string data)
+        public void Delete(Movie data)
         {
             Node current = root;
             Node parent = root;
@@ -134,7 +132,7 @@ namespace Library_Program
             while (current.value != data)
             {
                 parent = current;
-                if (string.Compare(data, current.value) == -1)
+                if (string.Compare(data.GetTitle(), current.value.GetTitle()) == -1)
                 {
                     isLeftChild = true;
                     current = current.lChild;

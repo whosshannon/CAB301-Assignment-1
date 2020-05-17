@@ -1,5 +1,7 @@
 ﻿using NUnit.Framework;
 using System;
+using Library_Program;
+
 
 namespace Library_Program_Test
 {
@@ -10,22 +12,26 @@ namespace Library_Program_Test
         string[] cast = { "Daniel Radcliffe", "Emma Watson", "Rupert Grint" };
         string director = "Chris Columbus";
         int runtime = 159;
-        Library_Program.Movie.GenreType genre = Library_Program.Movie.GenreType.Adventuer;
-        Library_Program.Movie.ClassificationType classification = Library_Program.Movie.ClassificationType.ParentalGuidance;
+        Movie.GenreType genre = Movie.GenreType.Adventuer;
+        Movie.ClassificationType classification = Movie.ClassificationType.ParentalGuidance;
         int copies = 6;
-        Library_Program.Movie harryPotter;
+        Movie harryPotter;
+
+        [SetUp()]
+        public void Setup()
+        {
+            harryPotter = new Movie(name, cast, director, runtime, genre, classification, copies);
+        }
 
         [Test()]
         public void MovieObjectConstruction()
         {
-            harryPotter = new Library_Program.Movie(name, cast, director, runtime, genre, classification, copies);
             Assert.That(harryPotter != null);
         }
 
         [Test()]
         public void MovieClassMember()
         {
-            harryPotter = new Library_Program.Movie(name, cast, director, runtime, genre, classification, copies);
             Assert.That(harryPotter.GetTitle() == "Harry Potter and the Philosopher's Stone");
         }
     }
@@ -39,19 +45,19 @@ namespace Library_Program_Test
         string address = "1 Main Road, Brisbane";
         int phone = 0123456789;
         int password = 1234;
-        Library_Program.Member john;
+        Member john;
 
         [Test()]
         public void MemberObjectConstruction()
         {
-            john = new Library_Program.Member(first, last, address, phone, password);
+            john = new Member(first, last, address, phone, password);
             Assert.That(john != null);
         }
 
         [Test()]
         public void MemberClassMember()
         {
-            john = new Library_Program.Member(first, last, address, phone, password);
+            john = new Member(first, last, address, phone, password);
             Assert.That(john.GetPhone() == 0123456789);
         }
     }
@@ -60,44 +66,68 @@ namespace Library_Program_Test
     [TestFixture()]
     public class BinarySearchTreeTest
     {
-        Library_Program.BinarySearchTree bst;
+        BinarySearchTree bst;
+
+        string[] cast = {""};
+        string director = "";
+        int runTime = 0;
+        Movie.GenreType givenGenre = 0;
+        Movie.ClassificationType givenClassification = 0;
+        int numberOfCopies = 0;
+
+        Movie A, B, C, D, E, F, G, H, I, J;
+
+        [SetUp()]
+        public void Setup()
+        {
+            A = new Movie("A", cast, director, runTime, givenGenre, givenClassification, numberOfCopies);
+            B = new Movie("B", cast, director, runTime, givenGenre, givenClassification, numberOfCopies);
+            C = new Movie("C", cast, director, runTime, givenGenre, givenClassification, numberOfCopies);
+            D = new Movie("D", cast, director, runTime, givenGenre, givenClassification, numberOfCopies);
+            E = new Movie("E", cast, director, runTime, givenGenre, givenClassification, numberOfCopies);
+            F = new Movie("F", cast, director, runTime, givenGenre, givenClassification, numberOfCopies);
+            G = new Movie("G", cast, director, runTime, givenGenre, givenClassification, numberOfCopies);
+            H = new Movie("H", cast, director, runTime, givenGenre, givenClassification, numberOfCopies);
+            I = new Movie("I", cast, director, runTime, givenGenre, givenClassification, numberOfCopies);
+            J = new Movie("J", cast, director, runTime, givenGenre, givenClassification, numberOfCopies);
+        }
 
         [Test()]
         public void BSTObjectConstruction()
         {
-            bst = new Library_Program.BinarySearchTree();
+            bst = new BinarySearchTree();
             Assert.That(bst != null);
         }
 
         [Test()]
         public void BSTInsert()
         {
-            bst = new Library_Program.BinarySearchTree();
-            bst.Insert("MOVIE");
-            Assert.That(bst.root.value == "MOVIE");
+            bst = new BinarySearchTree();
+            bst.Insert(A);
+            Assert.That(bst.root.value.GetTitle() == "A");
         }
 
         [Test()]
         public void BSTMultipleInsert()
         {
-            bst = new Library_Program.BinarySearchTree();
-            bst.Insert("D");
-            bst.Insert("B");
-            bst.Insert("A");
-            bst.Insert("C");
-            bst.Insert("F");
-            bst.Insert("G");
-            bst.Insert("E");
-            bst.Insert("H");
+            bst = new BinarySearchTree();
+            bst.Insert(D);
+            bst.Insert(B);
+            bst.Insert(A);
+            bst.Insert(C);
+            bst.Insert(F);
+            bst.Insert(G);
+            bst.Insert(E);
+            bst.Insert(H);
 
-            bool d = bst.root.value == "D";
-            bool b = bst.root.lChild.value == "B";
-            bool a = bst.root.lChild.lChild.value == "A";
-            bool c = bst.root.lChild.rChild.value == "C";
-            bool f = bst.root.rChild.value == "F";
-            bool g = bst.root.rChild.rChild.value == "G";
-            bool e = bst.root.rChild.lChild.value == "E";
-            bool h = bst.root.rChild.rChild.rChild.value == "H";
+            bool d = bst.root.value.GetTitle() == "D";
+            bool b = bst.root.lChild.value.GetTitle() == "B";
+            bool a = bst.root.lChild.lChild.value.GetTitle() == "A";
+            bool c = bst.root.lChild.rChild.value.GetTitle() == "C";
+            bool f = bst.root.rChild.value.GetTitle() == "F";
+            bool g = bst.root.rChild.rChild.value.GetTitle() == "G";
+            bool e = bst.root.rChild.lChild.value.GetTitle() == "E";
+            bool h = bst.root.rChild.rChild.rChild.value.GetTitle() == "H";
 
             Assert.That(a && b && c & d && e && f && g && h);
 
@@ -106,15 +136,15 @@ namespace Library_Program_Test
         [Test()]
         public void BSTSearch()
         {
-            bst = new Library_Program.BinarySearchTree();
-            bst.Insert("D");
-            bst.Insert("B");
-            bst.Insert("A");
-            bst.Insert("C");
-            bst.Insert("F");
-            bst.Insert("G");
-            bst.Insert("E");
-            bst.Insert("H");
+            bst = new BinarySearchTree();
+            bst.Insert(D);
+            bst.Insert(B);
+            bst.Insert(A);
+            bst.Insert(C);
+            bst.Insert(F);
+            bst.Insert(G);
+            bst.Insert(E);
+            bst.Insert(H);
 
             Assert.That(bst.Search("D") == bst.root);
         }
@@ -122,15 +152,15 @@ namespace Library_Program_Test
         [Test()]
         public void BSTSearchMultiple()
         {
-            bst = new Library_Program.BinarySearchTree();
-            bst.Insert("D");
-            bst.Insert("B");
-            bst.Insert("A");
-            bst.Insert("C");
-            bst.Insert("F");
-            bst.Insert("G");
-            bst.Insert("E");
-            bst.Insert("H");
+            bst = new BinarySearchTree();
+            bst.Insert(D);
+            bst.Insert(B);
+            bst.Insert(A);
+            bst.Insert(C);
+            bst.Insert(F);
+            bst.Insert(G);
+            bst.Insert(E);
+            bst.Insert(H);
 
             Assert.That(bst.Search("H") == bst.root.rChild.rChild.rChild);
         }
@@ -138,122 +168,122 @@ namespace Library_Program_Test
         [Test()]
         public void BSTSearchEmptyFail()
         {
-            bst = new Library_Program.BinarySearchTree();
+            bst = new BinarySearchTree();
             
-            Assert.That(bst.Search("S").value == "-1");
+            Assert.That(bst.Search("S") == null);
         }
         [Test()]
         public void BSTSearchFail()
         {
-            bst = new Library_Program.BinarySearchTree();
-            bst.Insert("D");
-            bst.Insert("B");
-            bst.Insert("A");
-            bst.Insert("C");
-            bst.Insert("F");
-            bst.Insert("G");
-            bst.Insert("E");
-            bst.Insert("H");
+            bst = new BinarySearchTree();
+            bst.Insert(D);
+            bst.Insert(B);
+            bst.Insert(A);
+            bst.Insert(C);
+            bst.Insert(F);
+            bst.Insert(G);
+            bst.Insert(E);
+            bst.Insert(H);
 
-            Assert.That(bst.Search("S").value == "-1");
+            Assert.That(bst.Search("S") == null);
         }
 
         [Test()]
         public void BSTDeleteLeaf()
         {
-            bst = new Library_Program.BinarySearchTree();
-            bst.Insert("D");
-            bst.Insert("B");
-            bst.Insert("A");
-            bst.Insert("C");
-            bst.Insert("F");
-            bst.Insert("G");
-            bst.Insert("E");
-            bst.Insert("H");
+            bst = new BinarySearchTree();
+            bst.Insert(D);
+            bst.Insert(B);
+            bst.Insert(A);
+            bst.Insert(C);
+            bst.Insert(F);
+            bst.Insert(G);
+            bst.Insert(E);
+            bst.Insert(H);
 
-            bst.Delete("H");
+            bst.Delete(H);
 
-            Assert.That(bst.Search("H").value == "-1");
+            Assert.That(bst.Search("H") == null);
 
         }
 
         [Test()]
         public void BSTDeleteNodeWithOneChildOriginalDeleted()
         {
-            bst = new Library_Program.BinarySearchTree();
-            bst.Insert("D");
-            bst.Insert("B");
-            bst.Insert("A");
-            bst.Insert("C");
-            bst.Insert("F");
-            bst.Insert("G");
-            bst.Insert("E");
-            bst.Insert("H");
+            bst = new BinarySearchTree();
+            bst.Insert(D);
+            bst.Insert(B);
+            bst.Insert(A);
+            bst.Insert(C);
+            bst.Insert(F);
+            bst.Insert(G);
+            bst.Insert(E);
+            bst.Insert(H);
 
-            bst.Delete("G");
+            bst.Delete(G);
 
-            Assert.That(bst.Search("G").value == "-1");
+            Assert.That(bst.Search("G") == null);
 
         }
 
         [Test()]
         public void BSTDeleteNodeWithOneChildChildUpdated()
         {
-            bst = new Library_Program.BinarySearchTree();
-            bst.Insert("D");
-            bst.Insert("B");
-            bst.Insert("A");
-            bst.Insert("C");
-            bst.Insert("F");
-            bst.Insert("G");
-            bst.Insert("E");
-            bst.Insert("H");
+            bst = new BinarySearchTree();
+            bst.Insert(D);
+            bst.Insert(B);
+            bst.Insert(A);
+            bst.Insert(C);
+            bst.Insert(F);
+            bst.Insert(G);
+            bst.Insert(E);
+            bst.Insert(H);
 
-            bst.Delete("G");
+            bst.Delete(G);
 
-            Assert.That(bst.root.rChild.rChild.value == "H");
+            Assert.That(bst.root.rChild.rChild.value.GetTitle() == "H");
 
         }
 
         [Test()]
         public void BSTDeleteNodeWithTwoChildrenOrginalReplaced()
         {
-            bst = new Library_Program.BinarySearchTree();
-            bst.Insert("D");
-            bst.Insert("B");
-            bst.Insert("A");
-            bst.Insert("C");
-            bst.Insert("F");
-            bst.Insert("E");
-            bst.Insert("I");
-            bst.Insert("H");
-            bst.Insert("G");
-            bst.Insert("J");
+            bst = new BinarySearchTree();
+            bst.Insert(D);
+            bst.Insert(B);
+            bst.Insert(A);
+            bst.Insert(C);
+            bst.Insert(F);
+            bst.Insert(E);
+            bst.Insert(I);
+            bst.Insert(H);
+            bst.Insert(G);
+            bst.Insert(J);
 
-            bst.Delete("I");
+            bst.Delete(I);
 
-            Assert.That(bst.root.rChild.rChild.value == "H");
+            Assert.That(bst.root.rChild.rChild.value.GetTitle() == "H");
 
         }
 
         [Test()]
         public void BSTDeleteNodeWithTwoChildrenchildrenUpdated()
         {
-            bst = new Library_Program.BinarySearchTree();
-            bst.Insert("D");
-            bst.Insert("B");
-            bst.Insert("A");
-            bst.Insert("C");
-            bst.Insert("F");
-            bst.Insert("E");
-            bst.Insert("I");
-            bst.Insert("H");
-            bst.Insert("G");
-            bst.Insert("J");
+            bst = new BinarySearchTree();
+            bst.Insert(D);
+            bst.Insert(B);
+            bst.Insert(A);
+            bst.Insert(C);
+            bst.Insert(F);
+            bst.Insert(E);
+            bst.Insert(I);
+            bst.Insert(H);
+            bst.Insert(G);
+            bst.Insert(J);
 
-            bst.Delete("I");
+            bst.Delete(I);
 
-            Assert.That(bst.root.rChild.rChild.lChild.value == "G");
+            Assert.That(bst.root.rChild.rChild.lChild.value.GetTitle() == "G");
 
         }
     }
