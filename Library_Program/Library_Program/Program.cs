@@ -3,8 +3,12 @@ namespace Library_Program
 {
     class MainClass
     {
+        static MovieCollection movieCollection;
+
         public static void Main(string[] args)
         {
+            movieCollection = new MovieCollection();
+
             string mainMenu = "Welcome to the Community Library!" +
                 "\n===========Main Menu============" +
                 "\n 1.\t Staff login" +
@@ -151,7 +155,7 @@ namespace Library_Program
                 else if (input == "1")
                 {
                     Console.Clear();
-                    Console.WriteLine("Display all movies");
+                    movieCollection.ListAllMovies();
                     Console.ReadKey();
                 }
                 else if (input == "2")

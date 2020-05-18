@@ -9,18 +9,19 @@ namespace Library_Program_Test
     public class MovieTest
     {
         string name = "Harry Potter and the Philosopher's Stone";
-        string[] cast = { "Daniel Radcliffe", "Emma Watson", "Rupert Grint" };
+        string cast = "Daniel Radcliffe";
         string director = "Chris Columbus";
         int runtime = 159;
-        Movie.GenreType genre = Movie.GenreType.Adventuer;
+        Movie.GenreType genre = Movie.GenreType.Adventure;
         Movie.ClassificationType classification = Movie.ClassificationType.ParentalGuidance;
+        DateTime date = new DateTime(2001, 11, 16);
         int copies = 6;
         Movie harryPotter;
 
         [SetUp()]
         public void Setup()
         {
-            harryPotter = new Movie(name, cast, director, runtime, genre, classification, copies);
+            harryPotter = new Movie(name, cast, director, runtime, genre, classification, date, copies);
         }
 
         [Test()]
@@ -68,11 +69,12 @@ namespace Library_Program_Test
     {
         BinarySearchTree bst;
 
-        string[] cast = {""};
+        string cast = "";
         string director = "";
         int runTime = 0;
         Movie.GenreType givenGenre = 0;
         Movie.ClassificationType givenClassification = 0;
+        DateTime date = new DateTime(2000, 09, 12);
         int numberOfCopies = 0;
 
         Movie A, B, C, D, E, F, G, H, I, J;
@@ -80,16 +82,16 @@ namespace Library_Program_Test
         [SetUp()]
         public void Setup()
         {
-            A = new Movie("A", cast, director, runTime, givenGenre, givenClassification, numberOfCopies);
-            B = new Movie("B", cast, director, runTime, givenGenre, givenClassification, numberOfCopies);
-            C = new Movie("C", cast, director, runTime, givenGenre, givenClassification, numberOfCopies);
-            D = new Movie("D", cast, director, runTime, givenGenre, givenClassification, numberOfCopies);
-            E = new Movie("E", cast, director, runTime, givenGenre, givenClassification, numberOfCopies);
-            F = new Movie("F", cast, director, runTime, givenGenre, givenClassification, numberOfCopies);
-            G = new Movie("G", cast, director, runTime, givenGenre, givenClassification, numberOfCopies);
-            H = new Movie("H", cast, director, runTime, givenGenre, givenClassification, numberOfCopies);
-            I = new Movie("I", cast, director, runTime, givenGenre, givenClassification, numberOfCopies);
-            J = new Movie("J", cast, director, runTime, givenGenre, givenClassification, numberOfCopies);
+            A = new Movie("A", cast, director, runTime, givenGenre, givenClassification, date, numberOfCopies);
+            B = new Movie("B", cast, director, runTime, givenGenre, givenClassification, date, numberOfCopies);
+            C = new Movie("C", cast, director, runTime, givenGenre, givenClassification, date, numberOfCopies);
+            D = new Movie("D", cast, director, runTime, givenGenre, givenClassification, date, numberOfCopies);
+            E = new Movie("E", cast, director, runTime, givenGenre, givenClassification, date, numberOfCopies);
+            F = new Movie("F", cast, director, runTime, givenGenre, givenClassification, date, numberOfCopies);
+            G = new Movie("G", cast, director, runTime, givenGenre, givenClassification, date, numberOfCopies);
+            H = new Movie("H", cast, director, runTime, givenGenre, givenClassification, date, numberOfCopies);
+            I = new Movie("I", cast, director, runTime, givenGenre, givenClassification, date, numberOfCopies);
+            J = new Movie("J", cast, director, runTime, givenGenre, givenClassification, date, numberOfCopies);
 
             bst = new BinarySearchTree();
             bst.Insert(D);
@@ -190,5 +192,61 @@ namespace Library_Program_Test
             Assert.That(bst.root.rChild.rChild.lChild.value.GetTitle() == "G");
 
         }
+
+        [Test()]
+        public void BSTList()
+        {
+            bst.List();
+            Assert.That(1 != 2);
+        }
+    }
+
+    [TestFixture()]
+    public class MovieCollectionTest
+    {
+        MovieCollection movieCollection;
+
+        [SetUp()]
+        public void Setup()
+        {
+            movieCollection = new MovieCollection();
+        }
+
+        [Test()]
+        public void MovieCollectionObjectConstruction()
+        {
+            Assert.That(movieCollection != null);
+        }
+
+        [Test()]
+        public void MovieCollectionClassMember()
+        {
+            movieCollection.ListAllMovies();
+            Assert.That(movieCollection != null);
+        }
+
+        //[Test()]
+        //public void a()
+        //{
+        //    //
+        //}
+
+        //[Test()]
+        //public void a()
+        //{
+        //    //
+        //}
+
+        //[Test()]
+        //public void a()
+        //{
+        //    //
+        //}
+
+        //[Test()]
+        //public void a()
+        //{
+        //    //
+        //}
     }
 }

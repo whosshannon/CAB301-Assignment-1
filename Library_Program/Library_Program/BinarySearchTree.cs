@@ -18,7 +18,7 @@ namespace Library_Program
         }
 
         /// <summary>
-        /// Inserts a new value into the Binary Search Tree
+        /// Inserts a new Movie into the Binary Search Tree
         /// </summary>
         /// <param name="data">The value that you would like to insert into the BST</param>
         public void Insert(Movie data)
@@ -62,9 +62,9 @@ namespace Library_Program
         }
 
         /// <summary>
-        /// Searches for a value within the BST
+        /// Searches for a movie within the BST given the title
         /// </summary>
-        /// <param name="data"></param>
+        /// <param name="data">The title of the movie</param>
         /// <returns>Returns a node corresponding to the searched value, node has value of "-1" if search is unsuccessfull</returns>
         public Node Search(string data)
         {
@@ -121,9 +121,9 @@ namespace Library_Program
         }
 
         /// <summary>
-        /// Deletes a value from the given BST
+        /// Deletes a Movie from the given BST
         /// </summary>
-        /// <param name="data">the value of the node to be deleted</param>
+        /// <param name="data">the Movie of the node to be deleted</param>
         public void Delete(Movie data)
         {
             Node current = root;
@@ -211,6 +211,29 @@ namespace Library_Program
 
                 }
             }
+        }
+
+        /// <summary>
+        /// Prints the given BST through In Order Traversal
+        /// </summary>
+        public void List()
+        {
+            //in order traversal
+            string list = InOrder(root);
+            Console.WriteLine(list);
+        }
+
+
+        public string InOrder(Node tNode)
+        {
+            string list = "";
+            if (tNode != null)
+            {
+                list += InOrder(tNode.lChild);
+                list += tNode.value.DisplayMovie() + "\n";
+                list += InOrder(tNode.rChild);
+            }
+            return list;
         }
     }
 }

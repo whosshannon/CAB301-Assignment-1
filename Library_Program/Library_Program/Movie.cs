@@ -6,7 +6,7 @@ namespace Library_Program
         public enum GenreType
         {
             Drama,
-            Adventuer,
+            Adventure,
             Family,
             Action,
             SciFi,
@@ -25,11 +25,12 @@ namespace Library_Program
         }
 
         string title;
-        string[] starring;
+        string starring;
         string director;
         int duration;
         GenreType genre;
         ClassificationType classification;
+        DateTime releaseDate;
         int copies;
         int copiesAvailable;
         int timesRented;
@@ -38,13 +39,14 @@ namespace Library_Program
         /// Creates an object Movie
         /// </summary>
         /// <param name="titleName">String of the title of the movie</param>
-        /// <param name="cast">String array of the casts names</param>
+        /// <param name="cast">String of the lead actor/actress' name</param>
         /// <param name="directorName">String of the directors name</param>
         /// <param name="runTime">Integer of the runtime of the movie in minutes</param>
         /// <param name="givenGenre">Enum of GenreType</param>
         /// <param name="givenClassification">Enum of ClassificationType</param>
+        /// <param name="date">Release date of the movie of DateTime type</param>
         /// <param name="numberOfCopies">Int of the number of copies the library owns</param>
-        public Movie(string titleName, string[] cast, string directorName, int runTime, GenreType givenGenre, ClassificationType givenClassification, int numberOfCopies) 
+        public Movie(string titleName, string cast, string directorName, int runTime, GenreType givenGenre, ClassificationType givenClassification, DateTime date, int numberOfCopies) 
         {
             title = titleName;
             starring = cast;
@@ -52,6 +54,7 @@ namespace Library_Program
             duration = runTime;
             genre = givenGenre;
             classification = givenClassification;
+            releaseDate = date;
             copies = numberOfCopies;
             copiesAvailable = copies;
             timesRented = 0;
@@ -62,17 +65,31 @@ namespace Library_Program
             return title;
         }
 
-        public string GetStarring()
-        {
-            return string.Join(", ", starring);
-        }
+        //public string GetStarring()
+        //{
+        //    return string.Join(", ", starring);
+        //}
+
+        //public string DisplayMovie()
+        //{
+        //    string movieInfo = "Title: " + title + "\n\t Starring: " + GetStarring() +
+        //        "\n\t Director: " + director + ",\n\t Runtime: " + duration +
+        //        " minutes \n\t Genre: " + genre + "\n\t Classification: " + classification +
+        //        "\n\t Times rented: " + timesRented + "\n\t Copies available: " + copiesAvailable;
+        //    return movieInfo;
+        //}
 
         public string DisplayMovie()
         {
-            string movieInfo = "Title: " + title + "\n\t Starring: " + GetStarring() +
-                "\n\t Director: " + director + ",\n\t Runtime: " + duration +
-                "minutes \n\t Genre: " + genre + "\n\t Classification: " + classification +
-                "\n\t Times rented: " + timesRented + "\n\t Copies available: " + copiesAvailable;
+            string movieInfo = title.PadRight(50, ' ') + "| "
+                + starring.PadRight(20, ' ') + "| "
+                + director.PadRight(20, ' ') + "| "
+                + duration.ToString().PadRight(10, ' ') + "| "
+                + genre.ToString().PadRight(10, ' ') + "| "
+                + classification.ToString().PadRight(18, ' ') + "| "
+                + releaseDate.Date.ToString("d").PadRight(12, ' ') + "| "
+                + timesRented.ToString().PadRight(10, ' ') + "| "
+                + copiesAvailable.ToString().PadRight(12, ' ') + "| ";
             return movieInfo;
         }
 
