@@ -12,11 +12,12 @@ namespace Library_Program
             memberCollection = new MemberCollection();
 
             string mainMenu = "Welcome to the Community Library!" +
-                "\n===========Main Menu============" +
+                "\n" +
+                "Main Menu".PadLeft(60, '=').PadRight(120, '=') +
                 "\n 1.\t Staff login" +
                 "\n 2.\t Member login" +
                 "\n 0.\t Exit" +
-                "\n================================" +
+                "\n".PadRight(121, '=') +
                 "\n\nPlease make a selection (1-2, or 0 to exit)\n";            
             
             string input = "";
@@ -57,10 +58,10 @@ namespace Library_Program
         {
             Console.Clear();
             Console.WriteLine("Welcome to the Community Library!" +
-                "\n================================" +
+                "\n".PadRight(121, '=') +
                 "\n Oops! Selection unrecognised" +
                 "\n Please double check your selection" +
-                "\n================================" +
+                "\n".PadRight(121, '=') +
                 "\n\nPress any key to return to menu\n");
 
             Console.ReadKey();
@@ -71,13 +72,13 @@ namespace Library_Program
         /// </summary>
         public static void ShowStaffMenu()
         {
-            string staffMenu = "===========Staff Menu===========" +
+            string staffMenu = "Staff Menu".PadLeft(60, '=').PadRight(120, '=') +
                 "\n 1.\t Add a new movie" +
                 "\n 2.\t Remove a movie" +
                 "\n 3.\t Register a new Member" +
                 "\n 4.\t Find a registered member's phone number" +
                 "\n 0.\t Return to main menu" +
-                "\n================================" +
+                "\n".PadRight(121, '=') +
                 "\n\nPlease make a selection (1-4, or 0 to return to main menu)\n";
 
             string input = "";
@@ -135,7 +136,7 @@ namespace Library_Program
                 input = "";
 
                 Console.Clear();
-                Console.WriteLine("===========Member Login==========");
+                Console.WriteLine("Member Login".PadLeft(60, '=').PadRight(120, '='));
                 Console.Write("Please enter your username:".PadRight(30, ' '));
                 input = Console.ReadLine();
                 Console.Write("Please enter your password:".PadRight(30, ' '));
@@ -155,7 +156,7 @@ namespace Library_Program
                 else
                 {
                     Console.Clear();
-                    Console.WriteLine("===========Member Login==========");
+                    Console.WriteLine("Member Login".PadLeft(60, '=').PadRight(120, '='));
                     Console.Write("It looks like there isn't a " +
                         "\nuser with those details." +
                         "\n\nPress any key to try again " +
@@ -170,14 +171,14 @@ namespace Library_Program
         /// </summary>
         public static void ShowMemberMenu(Member member)
         {
-            string memberMenu = "===========Member Menu==========" +
+            string memberMenu = "Member Menu".PadLeft(60, '=').PadRight(120, '=') +
                 "\n 1.\t Display all movies" +
                 "\n 2.\t Borrow a movie" +
                 "\n 3.\t Return a movie" +
                 "\n 4.\t List current borrowed movies" +
                 "\n 5.\t Display top 10 most popular movies" +
                 "\n 0.\t Return to main menu" +
-                "\n================================" +
+                "\n".PadRight(121, '=') +
                 "\n\nPlease make a selection (1-5, or 0 to return to main menu)\n";
 
             string input = "";
@@ -196,30 +197,90 @@ namespace Library_Program
                 }
                 else if (input == "1")
                 {
+                    //List all movies in the library
                     Console.Clear();
                     movieCollection.ListAllMovies();
                     Console.ReadKey();
                 }
                 else if (input == "2")
                 {
+                    //Borrow a movie
                     Console.Clear();
-                    Console.WriteLine("Borrow a movie");
-                    Console.ReadKey();
+                    Console.WriteLine("Borrow a movie".PadLeft(20, '=').PadRight(30, '='));
+
+                    Console.WriteLine("\nEnter the title of the movie you want to rent " +
+                        "\nor enter '0' to return to menu");
+
+                    string input2 = "";
+
+                    while (input2 != "0")
+                    {
+                        input2 = Console.ReadLine();
+
+                        if (input2 == "0" || input2 == null) { break; }
+
+                        Movie movie = movieCollection.SearchMovie(input2);
+
+                        if (movie == null)
+                        {
+                            //
+                        }
+                        else
+                        {
+                            Console.Clear();
+                            Console.WriteLine("Is this the movie you want to rent?\n" + movie.DisplayMovie());
+                            Console.WriteLine("Member Menu".PadLeft(60, '=').PadRight(120, '=') +
+                                                "\n 1.\t Yes, this is the movie i want to rent" +
+                                                "\n 2.\t No, i want to search again" +
+                                                "\n 0.\t Return to menu" +
+                                                "\n".PadRight(121, '=') +
+                                                "\n\nPlease make a selection (1-2, or 0 to return to main menu)\n");
+                            string response = Console.ReadLine();
+
+                            if (response == "0")
+                            {
+                                break;
+                            }
+                            else if (response == "1")
+                            {
+                                Console.Clear();
+                                Console.WriteLine("Rent the movie");
+                                member.Rent(movie);
+                                Console.ReadKey();
+                                input2 = "0";
+                            }
+                            else if (response == "2")
+                            {
+                                Console.Clear();
+                                Console.WriteLine("Dont rent the movie");
+                                Console.ReadKey();
+                                input2 = "0";
+                            }
+                            else
+                            {
+                                ShowWrongInput();
+                            }
+                        }
+                    }
                 }
                 else if (input == "3")
                 {
+                    //Return a movie
                     Console.Clear();
                     Console.WriteLine("Return a movie");
                     Console.ReadKey();
                 }
                 else if (input == "4")
                 {
+                    //List the movies the member is currently renting
                     Console.Clear();
                     Console.WriteLine("List current borrowed movies");
+                    Console.WriteLine(member.GetCurrentlyRenting());
                     Console.ReadKey();
                 }
                 else if (input == "5")
                 {
+                    //Display the 10 movies that have been rented the most
                     Console.Clear();
                     Console.WriteLine("Display top 10 most popular movies");
                     Console.ReadKey();

@@ -66,7 +66,7 @@ namespace Library_Program
         /// </summary>
         /// <param name="data">The title of the movie</param>
         /// <returns>Returns a node corresponding to the searched value, node has value of "-1" if search is unsuccessfull</returns>
-        public Node Search(string data)
+        public Movie Search(string data)
         {
             Node position = new Node();
 
@@ -78,7 +78,7 @@ namespace Library_Program
             if (root.value.GetTitle() == data)
             {
                 position = root;
-                return position;
+                return position.value;
             }
             else
             {
@@ -95,7 +95,7 @@ namespace Library_Program
                         if (current.value.GetTitle() == data)
                         {
                             position = current;
-                            return position;
+                            return position.value;
                         }
                         else if (current.lChild == null && current.rChild == null)
                         {
@@ -108,7 +108,7 @@ namespace Library_Program
                         if (current.value.GetTitle() == data)
                         {
                             position = current;
-                            return position;
+                            return position.value;
                         }
                         else if (current.lChild == null && current.rChild == null)
                         {

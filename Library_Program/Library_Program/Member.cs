@@ -58,9 +58,15 @@ namespace Library_Program
             return password;
         }
 
-        public ArrayList GetCurrentlyRenting()
+        public string GetCurrentlyRenting()
         {
-            return currentlyRenting;
+            string currentlyRentingMovies = "";
+            foreach (Movie movie in currentlyRenting)
+            {
+                currentlyRentingMovies += "\t" + movie.GetTitle() + "\n";
+            }
+
+            return currentlyRentingMovies;
         }
 
         public void Rent(Movie movie)

@@ -92,8 +92,7 @@ namespace Library_Program
 
         public Movie SearchMovie(string data)
         {
-
-            return null;
+            return movieBST.Search(data);
         }
     }
 }

@@ -45,5 +45,12 @@ namespace Library_Program
 
             return null;
         }
+
+        public string ListCurrentlyRenting(Member member)
+        {
+            
+
+            return "";
+        }
     }
 }

@@ -102,6 +102,57 @@ namespace Library_Program_Test
             Assert.That(john.GetPassword() == "1234");
         }
 
+        //[Test()]
+        //public void MemberRent()
+        //{
+        //    ArrayList expectedList = new ArrayList();
+        //    expectedList.Add(harryPotter);
+
+        //    john.Rent(harryPotter);
+
+        //    bool equal = true;
+
+        //    if (expectedList.Count != john.GetCurrentlyRenting().Count)
+        //    {
+        //        equal = false;
+        //    }
+        //    for (int i = 0; i < expectedList.Count; i++)
+        //    {
+        //        if (!expectedList[i].Equals(john.GetCurrentlyRenting()[i]))
+        //        {
+        //            equal = false;
+        //        }
+        //    }
+
+        //    Assert.That(equal);
+        //}
+
+        //[Test()]
+        //public void MemberReturn()
+        //{
+        //    ArrayList expectedList = new ArrayList();
+        //    //expectedList.Add(harryPotter);
+
+        //    john.Rent(harryPotter);
+        //    john.Return(harryPotter);
+
+        //    bool equal = true;
+
+        //    if (expectedList.Count != john.GetCurrentlyRenting().Count)
+        //    {
+        //        equal = false;
+        //    }
+        //    for (int i = 0; i < expectedList.Count; i++)
+        //    {
+        //        if (!expectedList[i].Equals(john.GetCurrentlyRenting()[i]))
+        //        {
+        //            equal = false;
+        //        }
+        //    }
+
+        //    Assert.That(equal);
+        //}
+
         [Test()]
         public void MemberRent()
         {
@@ -110,21 +161,13 @@ namespace Library_Program_Test
 
             john.Rent(harryPotter);
 
-            bool equal = true;
-
-            if (expectedList.Count != john.GetCurrentlyRenting().Count)
+            string currentlyRentingMovies = "";
+            foreach (Movie movie in expectedList)
             {
-                equal = false;
-            }
-            for (int i = 0; i < expectedList.Count; i++)
-            {
-                if (!expectedList[i].Equals(john.GetCurrentlyRenting()[i]))
-                {
-                    equal = false;
-                }
+                currentlyRentingMovies += "\t" + movie.GetTitle() + "\n";
             }
 
-            Assert.That(equal);
+            Assert.That(john.GetCurrentlyRenting() == currentlyRentingMovies);
         }
 
         [Test()]
@@ -138,19 +181,13 @@ namespace Library_Program_Test
 
             bool equal = true;
 
-            if (expectedList.Count != john.GetCurrentlyRenting().Count)
+            string currentlyRentingMovies = "";
+            foreach (Movie movie in expectedList)
             {
-                equal = false;
-            }
-            for (int i = 0; i < expectedList.Count; i++)
-            {
-                if (!expectedList[i].Equals(john.GetCurrentlyRenting()[i]))
-                {
-                    equal = false;
-                }
+                currentlyRentingMovies += "\t" + movie.GetTitle() + "\n";
             }
 
-            Assert.That(equal);
+            Assert.That(john.GetCurrentlyRenting() == currentlyRentingMovies);
         }
     }
 
@@ -225,7 +262,7 @@ namespace Library_Program_Test
         [Test()]
         public void BSTSearch()
         {
-            Assert.That(bst.Search("D") == bst.root);
+            Assert.That(bst.Search("D") == bst.root.value);
         }
 
         [Test()]
