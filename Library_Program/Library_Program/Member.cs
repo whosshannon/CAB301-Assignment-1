@@ -58,13 +58,31 @@ namespace Library_Program
             return password;
         }
 
-        public string GetCurrentlyRenting()
+        public String GetCurrentlyRenting()
         {
             string currentlyRentingMovies = "";
+            int i = 1;
+
             foreach (Movie movie in currentlyRenting)
             {
-                currentlyRentingMovies += "\t" + movie.GetTitle() + "\n";
+                currentlyRentingMovies += "\n " + i + ".\t " + movie.GetTitle();
+                i += 1;
             }
+
+            return currentlyRentingMovies;
+        }
+
+        public Movie[] d()
+        {
+            Movie[] currentlyRentingMovies = new Movie[currentlyRenting.Count];
+            int i = 0;
+
+            foreach (Movie movie in currentlyRenting)
+            {
+                currentlyRentingMovies[i] = movie;
+                i += 1;
+            }
+
 
             return currentlyRentingMovies;
         }

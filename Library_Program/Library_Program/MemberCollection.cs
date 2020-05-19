@@ -46,11 +46,11 @@ namespace Library_Program
             return null;
         }
 
-        public string ListCurrentlyRenting(Member member)
-        {
-            
+        //public string ListCurrentlyRenting(Member member)
+        //{
+        //    return member.GetCurrentlyRenting();
+        //}
 
-            return "";
-        }
+
     }
 }

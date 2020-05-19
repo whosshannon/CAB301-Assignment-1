@@ -164,7 +164,7 @@ namespace Library_Program_Test
             string currentlyRentingMovies = "";
             foreach (Movie movie in expectedList)
             {
-                currentlyRentingMovies += "\t" + movie.GetTitle() + "\n";
+                currentlyRentingMovies += "\n 1.\t " + movie.GetTitle() + "\n";
             }
 
             Assert.That(john.GetCurrentlyRenting() == currentlyRentingMovies);

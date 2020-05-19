@@ -10,6 +10,9 @@ namespace Library_Program
         {
             movieCollection = new MovieCollection();
             memberCollection = new MemberCollection();
+            memberCollection.FindMember("SmithJohn", "0000").Rent(movieCollection.SearchMovie("Harry Potter and the Philosopher's Stone"));
+            memberCollection.FindMember("SmithJohn", "0000").Rent(movieCollection.SearchMovie("Harry Potter and the Chamber of Secrets"));
+            memberCollection.FindMember("SmithJohn", "0000").Rent(movieCollection.SearchMovie("Harry Potter and the Prisoner of Azkaban"));
 
             string mainMenu = "Welcome to the Community Library!" +
                 "\n" +
@@ -204,26 +207,32 @@ namespace Library_Program
                 }
                 else if (input == "2")
                 {
-                    //Borrow a movie
-                    Console.Clear();
-                    Console.WriteLine("Borrow a movie".PadLeft(20, '=').PadRight(30, '='));
+                    //Rent a movie
+                    //Console.Clear();
+                    //Console.WriteLine("Borrow a movie".PadLeft(20, '=').PadRight(30, '='));
 
-                    Console.WriteLine("\nEnter the title of the movie you want to rent " +
-                        "\nor enter '0' to return to menu");
+                    //Console.WriteLine("\nEnter the title of the movie you want to rent " +
+                    //    "\nor enter '0' to return to menu");
 
                     string input2 = "";
 
                     while (input2 != "0")
                     {
+                        Console.Clear();
+                        Console.WriteLine("Borrow a movie".PadLeft(60, '=').PadRight(120, '='));
+
+                        Console.WriteLine("\nEnter the title of the movie you want to rent " +
+                            "\nor enter '0' to return to menu");
+
                         input2 = Console.ReadLine();
 
-                        if (input2 == "0" || input2 == null) { break; }
+                        if (input2 == "0" || input2 == null || input2 == "") { break; }
 
                         Movie movie = movieCollection.SearchMovie(input2);
 
                         if (movie == null)
                         {
-                            //
+                            // 
                         }
                         else
                         {
@@ -254,7 +263,6 @@ namespace Library_Program
                                 Console.Clear();
                                 Console.WriteLine("Dont rent the movie");
                                 Console.ReadKey();
-                                input2 = "0";
                             }
                             else
                             {
@@ -266,9 +274,46 @@ namespace Library_Program
                 else if (input == "3")
                 {
                     //Return a movie
-                    Console.Clear();
-                    Console.WriteLine("Return a movie");
-                    Console.ReadKey();
+                    string input2 = "";
+
+                    while (input2 != "0")
+                    {
+                        Console.Clear();
+                        Console.WriteLine("Return a movie".PadLeft(60, '=').PadRight(120, '='));
+
+                        Console.WriteLine(member.GetCurrentlyRenting());
+                        Console.WriteLine("\nWhich of your rented movies would you like to return?" +
+                            "\nPlease make a selection or 0 to return to main menu");
+
+                        //input2 = Console.ReadLine();
+
+                        string response = Console.ReadLine();
+
+                        if (response == "0")
+                        {
+                            break;
+                        }
+                        else if (int.TryParse(response, out int responseInt) && (responseInt <= member.d().Length))
+                        {
+                            Console.Clear();
+                            Console.WriteLine("Return " + response);
+                            member.Return(member.d()[responseInt-1]);
+                            Console.ReadKey();
+                            input2 = "0";
+                        }
+                        //else if (response == "1")
+                        //{
+                        //    Console.Clear();
+                        //    Console.WriteLine("Return the movie");
+                        //    Console.ReadKey();
+                        //    input2 = "0";
+                        //}
+                        else
+                        {
+                            ShowWrongInput();
+                        }
+                    }
+                    
                 }
                 else if (input == "4")
                 {
