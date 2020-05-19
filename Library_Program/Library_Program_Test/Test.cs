@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using System;
+using System.Collections;    
 using Library_Program;
 
 
@@ -45,21 +46,111 @@ namespace Library_Program_Test
         string last = "Doe";
         string address = "1 Main Road, Brisbane";
         int phone = 0123456789;
-        int password = 1234;
+        string password = "1234";
         Member john;
+
+        string name = "Harry Potter and the Philosopher's Stone";
+        string cast = "Daniel Radcliffe";
+        string director = "Chris Columbus";
+        int runtime = 159;
+        Movie.GenreType genre = Movie.GenreType.Adventure;
+        Movie.ClassificationType classification = Movie.ClassificationType.ParentalGuidance;
+        DateTime date = new DateTime(2001, 11, 16);
+        int copies = 6;
+        Movie harryPotter;
+
+        [SetUp()]
+        public void Setup()
+        {
+            john = new Member(first, last, address, phone, password);
+            harryPotter = new Movie(name, cast, director, runtime, genre, classification, date, copies);
+        }
 
         [Test()]
         public void MemberObjectConstruction()
         {
-            john = new Member(first, last, address, phone, password);
             Assert.That(john != null);
         }
 
         [Test()]
-        public void MemberClassMember()
+        public void MemberGetPhone()
         {
-            john = new Member(first, last, address, phone, password);
             Assert.That(john.GetPhone() == 0123456789);
+        }
+
+        [Test()]
+        public void MemberGetFirstname()
+        {
+            Assert.That(john.GetFirstName() == "John");
+        }
+
+        [Test()]
+        public void MemberGetLastname()
+        {
+            Assert.That(john.GetLastName() == "Doe");
+        }
+
+        [Test()]
+        public void MemberGetUsername()
+        {
+            Assert.That(john.GetUsername() == "DoeJohn");
+        }
+
+        [Test()]
+        public void MemberGetPassword()
+        {
+            Assert.That(john.GetPassword() == "1234");
+        }
+
+        [Test()]
+        public void MemberRent()
+        {
+            ArrayList expectedList = new ArrayList();
+            expectedList.Add(harryPotter);
+
+            john.Rent(harryPotter);
+
+            bool equal = true;
+
+            if (expectedList.Count != john.GetCurrentlyRenting().Count)
+            {
+                equal = false;
+            }
+            for (int i = 0; i < expectedList.Count; i++)
+            {
+                if (!expectedList[i].Equals(john.GetCurrentlyRenting()[i]))
+                {
+                    equal = false;
+                }
+            }
+
+            Assert.That(equal);
+        }
+
+        [Test()]
+        public void MemberReturn()
+        {
+            ArrayList expectedList = new ArrayList();
+            //expectedList.Add(harryPotter);
+
+            john.Rent(harryPotter);
+            john.Return(harryPotter);
+
+            bool equal = true;
+
+            if (expectedList.Count != john.GetCurrentlyRenting().Count)
+            {
+                equal = false;
+            }
+            for (int i = 0; i < expectedList.Count; i++)
+            {
+                if (!expectedList[i].Equals(john.GetCurrentlyRenting()[i]))
+                {
+                    equal = false;
+                }
+            }
+
+            Assert.That(equal);
         }
     }
 

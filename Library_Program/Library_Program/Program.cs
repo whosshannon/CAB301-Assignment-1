@@ -4,10 +4,12 @@ namespace Library_Program
     class MainClass
     {
         static MovieCollection movieCollection;
+        static MemberCollection memberCollection;
 
         public static void Main(string[] args)
         {
             movieCollection = new MovieCollection();
+            memberCollection = new MemberCollection();
 
             string mainMenu = "Welcome to the Community Library!" +
                 "\n===========Main Menu============" +
@@ -39,7 +41,8 @@ namespace Library_Program
                 else if (input == "2")
                 {
                     //Member
-                    ShowMemberMenu();
+                    //MemberLogin();
+                    ShowMemberMenu(memberCollection.FindMember("SmithJohn", "0000"));
                 }
                 else
                 {
@@ -123,10 +126,49 @@ namespace Library_Program
             }
         }
 
+        public static void MemberLogin()
+        {
+            string input = "";
+
+            while (input != "0")
+            {
+                input = "";
+
+                Console.Clear();
+                Console.WriteLine("===========Member Login==========");
+                Console.Write("Please enter your username:".PadRight(30, ' '));
+                input = Console.ReadLine();
+                Console.Write("Please enter your password:".PadRight(30, ' '));
+                string password = Console.ReadLine();
+
+                Member member = memberCollection.FindMember(input, password);
+
+
+                if (member != null)
+                {
+                    Console.Clear();
+                    Console.WriteLine("Welcome " + member.GetFirstName() + "!");
+                    Console.Read();
+                    ShowMemberMenu(member);
+                    break;
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine("===========Member Login==========");
+                    Console.Write("It looks like there isn't a " +
+                        "\nuser with those details." +
+                        "\n\nPress any key to try again " +
+                        "\nor enter '0' to return to the main screen");
+                    input = Console.ReadLine();
+                }
+            }
+        }
+
         /// <summary>
         /// Displays the Member menu until the user enters '0'
         /// </summary>
-        public static void ShowMemberMenu()
+        public static void ShowMemberMenu(Member member)
         {
             string memberMenu = "===========Member Menu==========" +
                 "\n 1.\t Display all movies" +
@@ -150,7 +192,7 @@ namespace Library_Program
 
                 if (input == "0")
                 {
-                    //
+                    break;
                 }
                 else if (input == "1")
                 {

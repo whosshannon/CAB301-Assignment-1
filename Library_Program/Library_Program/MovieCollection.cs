@@ -5,7 +5,6 @@ namespace Library_Program
     {
         BinarySearchTree movieBST;
 
-
         public MovieCollection()
         {
             movieBST = new BinarySearchTree();
@@ -87,7 +86,7 @@ namespace Library_Program
                 + "# Rented".ToString().PadRight(10, ' ') + "| "
                 + "# Available".ToString().PadRight(12, ' ') + "| ";
             Console.WriteLine(movieInfoHeader);
-            Console.WriteLine("".PadRight(178, '='));
+            Console.WriteLine("".PadRight(179, '='));
             movieBST.List();
         }
 
