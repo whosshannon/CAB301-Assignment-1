@@ -326,15 +326,9 @@ namespace Library_Program_Test
         [Test()]
         public void BSTDeleteNodeWithTwoChildrenRightmostLeftDelted()
         {
-            Console.WriteLine("hello" + bst.root.rChild.lChild.rChild.value.GetTitle());
-
             bst.Delete(F);
-            Console.WriteLine("hello");
 
-            //Console.WriteLine("hello"+bst.root.rChild.lChild.rChild.value.GetTitle());
-
-            Assert.That(bst.root.rChild.lChild.rChild.value == null);
-
+            Assert.Throws<NullReferenceException>(() => bst.root.rChild.lChild.rChild.value.GetTitle());
         }
 
         [Test()]
