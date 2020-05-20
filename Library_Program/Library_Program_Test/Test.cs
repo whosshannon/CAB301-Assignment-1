@@ -214,7 +214,7 @@ namespace Library_Program_Test
         DateTime date = new DateTime(2000, 09, 12);
         int numberOfCopies = 0;
 
-        Movie A, B, C, D, E, F, G, H, I, J;
+        Movie A, B, C, D, E, F, G, H, I, J, Ee;
 
         [SetUp()]
         public void Setup()
@@ -224,6 +224,7 @@ namespace Library_Program_Test
             C = new Movie("C", cast, director, runTime, givenGenre, givenClassification, date, numberOfCopies);
             D = new Movie("D", cast, director, runTime, givenGenre, givenClassification, date, numberOfCopies);
             E = new Movie("E", cast, director, runTime, givenGenre, givenClassification, date, numberOfCopies);
+            Ee = new Movie("Ee", cast, director, runTime, givenGenre, givenClassification, date, numberOfCopies);
             F = new Movie("F", cast, director, runTime, givenGenre, givenClassification, date, numberOfCopies);
             G = new Movie("G", cast, director, runTime, givenGenre, givenClassification, date, numberOfCopies);
             H = new Movie("H", cast, director, runTime, givenGenre, givenClassification, date, numberOfCopies);
@@ -238,6 +239,7 @@ namespace Library_Program_Test
             bst.Insert(F);
             bst.Insert(E);
             bst.Insert(I);
+            bst.Insert(Ee);
             bst.Insert(H);
             bst.Insert(G);
             bst.Insert(J);
@@ -315,18 +317,41 @@ namespace Library_Program_Test
         [Test()]
         public void BSTDeleteNodeWithTwoChildrenOrginalReplaced()
         {
-            bst.Delete(I);
+            bst.Delete(F);
 
-            Assert.That(bst.root.rChild.rChild.value.GetTitle() == "H");
+            Assert.That(bst.root.rChild.value.GetTitle() == "Ee");
 
         }
 
         [Test()]
-        public void BSTDeleteNodeWithTwoChildrenchildrenUpdated()
+        public void BSTDeleteNodeWithTwoChildrenRightmostLeftDelted()
         {
-            bst.Delete(I);
+            Console.WriteLine("hello" + bst.root.rChild.lChild.rChild.value.GetTitle());
 
-            Assert.That(bst.root.rChild.rChild.lChild.value.GetTitle() == "G");
+            bst.Delete(F);
+            Console.WriteLine("hello");
+
+            //Console.WriteLine("hello"+bst.root.rChild.lChild.rChild.value.GetTitle());
+
+            Assert.That(bst.root.rChild.lChild.rChild.value == null);
+
+        }
+
+        [Test()]
+        public void BSTDeleteNodeWithTwoChildrenLeftChildrenUpdated()
+        {
+            bst.Delete(F);
+
+            Assert.That(bst.root.rChild.lChild.value.GetTitle() == "E");
+
+        }
+
+        [Test()]
+        public void BSTDeleteNodeWithTwoChildrenRightChildrenUpdated()
+        {
+            bst.Delete(F);
+
+            Assert.That(bst.root.rChild.rChild.value.GetTitle() == "I");
 
         }
 

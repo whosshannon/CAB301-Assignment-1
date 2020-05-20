@@ -57,7 +57,7 @@ namespace Library_Program
             date = new DateTime(2010, 11, 19);
             movieBST.Insert(new Movie(name, cast, director, runtime, genre, classification, date, copies));
 
-            name = "Harry Potter and the Deathly Hallow2: Part 2";
+            name = "Harry Potter and the Deathly Hallows: Part 2";
             runtime = 130;
             date = new DateTime(2011, 7, 15);
             movieBST.Insert(new Movie(name, cast, director, runtime, genre, classification, date, copies));
@@ -86,7 +86,7 @@ namespace Library_Program
                 + "# Rented".ToString().PadRight(10, ' ') + "| "
                 + "# Available".ToString().PadRight(12, ' ') + "| ";
             Console.WriteLine(movieInfoHeader);
-            Console.WriteLine("".PadRight(179, '='));
+            Console.WriteLine("".PadRight(180, '='));
             movieBST.List();
         }
 

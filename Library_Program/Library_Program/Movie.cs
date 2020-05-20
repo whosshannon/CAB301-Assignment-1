@@ -5,15 +5,15 @@ namespace Library_Program
     {
         public enum GenreType
         {
-            Drama,
-            Adventure,
-            Family,
-            Action,
-            SciFi,
-            Comedy,
-            Aimated,
-            Thriller,
-            Other
+            Drama = 0,
+            Adventure = 1,
+            Family = 2,
+            Action = 3,
+            SciFi = 4,
+            Comedy = 5,
+            Animated = 6,
+            Thriller = 7,
+            Other = 8
         }
 
         public enum ClassificationType
@@ -109,6 +109,18 @@ namespace Library_Program
         {
             copiesAvailable += 1;
             timesRented += 1;
+        }
+
+        public bool notBeingRented()
+        {
+            if (copiesAvailable == copies)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

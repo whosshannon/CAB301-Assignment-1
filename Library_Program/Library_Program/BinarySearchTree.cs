@@ -213,16 +213,17 @@ namespace Library_Program
                     }
                 }
 
+                Node placeholder = rightmostOfLeft;
+
                 Delete(rightmostOfLeft.value);
 
                 if (isLeftChild)
                 {
-                    parent.lChild = rightmostOfLeft;
+                    parent.lChild.value = placeholder.value;
                 }
                 else
                 {
-                    parent.rChild = rightmostOfLeft;
-
+                    parent.rChild.value = placeholder.value;
                 }
             }
         }
