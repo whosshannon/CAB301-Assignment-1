@@ -91,28 +91,42 @@ namespace Library_Program
                     parent = current;
                     if (string.Compare(data, current.value.GetTitle()) == -1)
                     {
-                        current = current.lChild;
-                        if (current.value.GetTitle() == data)
+                        if (current.lChild != null)
                         {
-                            position = current;
-                            return position.value;
+                            current = current.lChild;
+                            if (current.value.GetTitle() == data)
+                            {
+                                position = current;
+                                return position.value;
+                            }
+                            else if (current.lChild == null && current.rChild == null)
+                            {
+                                searching = false;
+                            }
                         }
-                        else if (current.lChild == null && current.rChild == null)
+                        else
                         {
-                            searching = false;
+                            return null;
                         }
                     }
                     else if (string.Compare(data, current.value.GetTitle()) == 1)
                     {
-                        current = current.rChild;
-                        if (current.value.GetTitle() == data)
+                        if (current.rChild != null)
                         {
-                            position = current;
-                            return position.value;
+                            current = current.rChild;
+                            if (current.value.GetTitle() == data)
+                            {
+                                position = current;
+                                return position.value;
+                            }
+                            else if (current.lChild == null && current.rChild == null)
+                            {
+                                searching = false;
+                            }
                         }
-                        else if (current.lChild == null && current.rChild == null)
+                        else
                         {
-                            searching = false;
+                            return null;
                         }
                     }
                 }

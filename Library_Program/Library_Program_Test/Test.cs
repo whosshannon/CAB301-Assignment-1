@@ -164,10 +164,15 @@ namespace Library_Program_Test
             string currentlyRentingMovies = "";
             foreach (Movie movie in expectedList)
             {
-                currentlyRentingMovies += "\n 1.\t " + movie.GetTitle() + "\n";
+                currentlyRentingMovies += movie.GetTitle() + ", ";
             }
 
-            Assert.That(john.GetCurrentlyRenting() == currentlyRentingMovies);
+            string johnMovies = "";
+            foreach (Movie movie in john.GetCurrentlyRenting()) {
+                johnMovies += movie.GetTitle() + ", ";
+            }
+
+            Assert.That(johnMovies == currentlyRentingMovies);
         }
 
         [Test()]
@@ -179,15 +184,19 @@ namespace Library_Program_Test
             john.Rent(harryPotter);
             john.Return(harryPotter);
 
-            bool equal = true;
-
             string currentlyRentingMovies = "";
             foreach (Movie movie in expectedList)
             {
-                currentlyRentingMovies += "\t" + movie.GetTitle() + "\n";
+                currentlyRentingMovies += movie.GetTitle() + ", ";
             }
 
-            Assert.That(john.GetCurrentlyRenting() == currentlyRentingMovies);
+            string johnMovies = "";
+            foreach (Movie movie in john.GetCurrentlyRenting())
+            {
+                johnMovies += movie.GetTitle() + ", ";
+            }
+
+            Assert.That(johnMovies == currentlyRentingMovies);
         }
     }
 

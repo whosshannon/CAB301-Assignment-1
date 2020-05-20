@@ -1,19 +1,21 @@
 ﻿<Properties StartupConfiguration="{9FE7BFFF-C693-4AC5-BF3F-0B8255A78E24}|Default">
   <MonoDevelop.Ide.ItemProperties.Library__Program PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Library_Program/Member.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Library_Program/BinarySearchTree.cs">
     <Files>
-      <File FileName="Library_Program/MemberCollection.cs" Line="14" Column="10" />
-      <File FileName="Library_Program/Member.cs" Line="68" Column="60" />
-      <File FileName="Library_Program/Program.cs" Line="301" Column="58" />
-      <File FileName="Library_Program/MovieCollection.cs" Line="95" Column="13" />
-      <File FileName="Library_Program/BinarySearchTree.cs" Line="78" Column="1" />
+      <File FileName="Library_Program_Test/Test.cs" Line="171" Column="61" />
+      <File FileName="Library_Program/Program.cs" Line="235" Column="113" />
+      <File FileName="Library_Program/MemberCollection.cs" Line="13" Column="85" />
+      <File FileName="Library_Program/Member.cs" Line="85" Column="1" />
+      <File FileName="Library_Program/MovieCollection.cs" Line="77" Column="26" />
+      <File FileName="Library_Program/Movie.cs" Line="1" Column="1" />
+      <File FileName="Library_Program/BinarySearchTree.cs" Line="108" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Library_Program" expanded="True">
             <Node name="Library_Program" expanded="True">
-              <Node name="Member.cs" selected="True" />
+              <Node name="BinarySearchTree.cs" selected="True" />
             </Node>
             <Node name="Library_Program_Test" expanded="True" />
           </Node>
@@ -24,10 +26,7 @@
           <Node name="Library_Program" expanded="True">
             <Node name="Library_Program_Test" expanded="True">
               <Node name="Library_Program_Test" expanded="True">
-                <Node name="BinarySearchTreeTest" expanded="True" />
-                <Node name="MemberTest" expanded="True">
-                  <Node name="MemberReturn" selected="True" />
-                </Node>
+                <Node name="MemberTest" selected="True" />
               </Node>
             </Node>
           </Node>
@@ -38,10 +37,7 @@
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|anycpu" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/shannonstephens/Documents/Uni Stuff/Year 3 Semester 1/CAB301 Algorithms and Complexity/CAB301-Assignment-1/Library_Program/Library_Program/BinarySearchTree.cs" relfile="Library_Program/BinarySearchTree.cs" line="78" column="1" />
-      <Breakpoint file="/Users/shannonstephens/Documents/Uni Stuff/Year 3 Semester 1/CAB301 Algorithms and Complexity/CAB301-Assignment-1/Library_Program/Library_Program/BinarySearchTree.cs" relfile="Library_Program/BinarySearchTree.cs" line="95" column="1" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
 </Properties>
