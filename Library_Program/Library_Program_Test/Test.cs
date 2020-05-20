@@ -45,7 +45,7 @@ namespace Library_Program_Test
         string first = "John";
         string last = "Doe";
         string address = "1 Main Road, Brisbane";
-        int phone = 0123456789;
+        string phone = "0123456789";
         string password = "1234";
         Member john;
 
@@ -75,7 +75,7 @@ namespace Library_Program_Test
         [Test()]
         public void MemberGetPhone()
         {
-            Assert.That(john.GetPhone() == 0123456789);
+            Assert.That(john.GetPhone() == "0123456789");
         }
 
         [Test()]

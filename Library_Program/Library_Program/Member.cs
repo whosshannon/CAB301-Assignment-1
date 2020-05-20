@@ -8,12 +8,12 @@ namespace Library_Program
         string first;
         string last;
         string address;
-        int phone;
+        string phone;
         ArrayList currentlyRenting;
         string username;
         string password;
 
-        public Member(string firstName, string Lastname, string residentialAddress, int phoneNumer, string pass)
+        public Member(string firstName, string Lastname, string residentialAddress, string phoneNumer, string pass)
         {
             currentlyRenting = new ArrayList();
             first = firstName;
@@ -33,7 +33,7 @@ namespace Library_Program
             }
         }
 
-        public int GetPhone()
+        public string GetPhone()
         {
             return phone;
         }

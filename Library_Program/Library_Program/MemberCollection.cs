@@ -10,17 +10,17 @@ namespace Library_Program
         {
             memberCollection = new Member[100];
             numberOfMembers = 0;
-            AddMember("John", "Smith", "1 Main Road, Brisbane", 0123456789, "0000");
+            AddMember("John", "Smith", "1 Main Road, Brisbane", "0123456789", "0000");
         }
 
-        public void AddMember(string firstName, string Lastname, string residentialAddress, int phoneNumer, string pass)
+        public void AddMember(string firstName, string Lastname, string residentialAddress, string phoneNumer, string pass)
         {
             Member member = new Member(firstName, Lastname, residentialAddress, phoneNumer, pass);
             memberCollection[numberOfMembers] = member;
             numberOfMembers += 1;
         }
 
-        public int FindPhone(string firstName, string lastname)
+        public string FindPhone(string firstName, string lastname)
         {
             for (int i = 0; i < numberOfMembers; i++)
             {
@@ -30,7 +30,7 @@ namespace Library_Program
                 }
             }
 
-            return -1;
+            return "-1";
         }
 
         public Member FindMember(string username, string password)

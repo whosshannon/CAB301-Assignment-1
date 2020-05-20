@@ -46,8 +46,8 @@ namespace Library_Program
                 else if (input == "2")
                 {
                     //Member
-                    //MemberLogin();
-                    ShowMemberMenu(memberCollection.FindMember("SmithJohn", "0000"));
+                    MemberLogin();
+                    //ShowMemberMenu(memberCollection.FindMember("SmithJohn", "0000"));
                 }
                 else
                 {
@@ -289,16 +289,71 @@ namespace Library_Program
                 else if (input == "3")
                 {
                     //Register a new member
-                    Console.Clear();
-                    Console.WriteLine("Register a new Member".PadLeft(90, '=').PadRight(180, '='));
-                    Console.ReadKey();
+                    string input2 = "";
+
+                    while (input2 != "0") {
+                        Console.Clear();
+                        Console.WriteLine("Register a new Member".PadLeft(90, '=').PadRight(180, '='));
+
+                        Console.Write("Please enter the first name of the member you wish to add, or enter '0' to exit:\n\t");
+                        input2 = Console.ReadLine();
+                        if (input2 == "0")
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            Console.Write("What is their last name:\n\t");
+                            string last = Console.ReadLine();
+                            Console.Write("What is their address:\n\t");
+                            string address = Console.ReadLine();
+                            Console.Write("What is their phone number:\n\t");
+                            string phone = Console.ReadLine();
+                            Console.Write("Please ask the new member to enter a four diget password:\n\t");
+                            string password = Console.ReadLine();
+
+                            memberCollection.AddMember(input2, last, address, phone, password);
+
+                            Console.Clear();
+                            Console.WriteLine("Welcome to the library, " + input2);
+
+                            input2 = "0";
+
+                            Console.ReadKey();
+                        }
+                     }
                 }
                 else if (input == "4")
                 {
                     //Find the phone number of a member
-                    Console.Clear();
-                    Console.WriteLine("Find a registered member's phone number".PadLeft(90, '=').PadRight(180, '='));
-                    Console.ReadKey();
+                    string input2 = "";
+
+                    while (input2 != "0")
+                    {
+                        Console.Clear();
+                        Console.WriteLine("Find a registered member's phone number".PadLeft(90, '=').PadRight(180, '='));
+
+                        Console.Write("Please enter the first name of the member you wish to add, or enter '0' to exit:\n\t");
+                        input2 = Console.ReadLine();
+                        if (input2 == "0")
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            Console.Write("What is their last name:\n\t");
+                            string last = Console.ReadLine();
+
+                            string phone = memberCollection.FindPhone(input2, last);
+
+                            Console.Clear();
+                            Console.WriteLine(input2+ "'s phone number is: " + phone);
+
+                            input2 = "0";
+
+                            Console.ReadKey();
+                        }
+                    }
                 }
                 else
                 {
