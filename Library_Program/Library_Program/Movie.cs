@@ -65,19 +65,10 @@ namespace Library_Program
             return title;
         }
 
-        //public string GetStarring()
-        //{
-        //    return string.Join(", ", starring);
-        //}
-
-        //public string DisplayMovie()
-        //{
-        //    string movieInfo = "Title: " + title + "\n\t Starring: " + GetStarring() +
-        //        "\n\t Director: " + director + ",\n\t Runtime: " + duration +
-        //        " minutes \n\t Genre: " + genre + "\n\t Classification: " + classification +
-        //        "\n\t Times rented: " + timesRented + "\n\t Copies available: " + copiesAvailable;
-        //    return movieInfo;
-        //}
+        public int GetTimesRented()
+        {
+            return timesRented;
+        }
 
         public string DisplayMovie()
         {
@@ -98,6 +89,7 @@ namespace Library_Program
             if (copiesAvailable > 0)
             {
                 copiesAvailable -= 1;
+                timesRented += 1;
             }
             else
             {
@@ -108,7 +100,6 @@ namespace Library_Program
         public void ReturnMovie()
         {
             copiesAvailable += 1;
-            timesRented += 1;
         }
 
         public bool notBeingRented()

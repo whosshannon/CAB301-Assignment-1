@@ -94,5 +94,95 @@ namespace Library_Program
         {
             return movieBST.Search(data);
         }
+
+        public void TopTenMovies()
+        {
+            //traverse BST and transform into an array
+            Movie[] movieArray = movieBST.InOrder(movieBST.GetRoot());
+            //sort array by # borrowed using mergesort
+            movieArray = MergeSort(movieArray);
+            //print? i guess
+            foreach (Movie movie in movieArray)
+            {
+                if (movie != null)
+                {
+                    Console.WriteLine(movie.DisplayMovie());
+                }
+            }
+        }
+
+        Movie[] MergeSort(Movie[] movieArray) {
+            if (1 < movieArray.Length)
+            {
+                int leftLength = movieArray.Length / 2;
+                int rightLength = movieArray.Length - leftLength;
+
+                Movie[] left = new Movie[leftLength];
+                Movie[] right = new Movie[rightLength];
+
+                for (int i = 0; i < leftLength; i++)
+                {
+                    left[i] = movieArray[i];
+                }
+
+                for (int i = 0; i < rightLength; i++)
+                {
+                    right[i] = movieArray[rightLength + i];
+                }
+
+                left = MergeSort(left);
+                right = MergeSort(right);
+
+
+                movieArray = Merge(left, right);
+
+                return movieArray;
+            }
+            else
+            {
+                return movieArray;
+            }
+        }
+
+        Movie[] Merge(Movie[] left, Movie[] right)
+        {
+            Movie[] movieArray = new Movie[left.Length + right.Length];
+
+            int leftIndex = 0;
+            int rightIndex = 0;
+            int outIndex = 0;
+
+            while (leftIndex < left.Length && rightIndex < right.Length)
+            {
+                if (left[leftIndex] == null) { leftIndex++; }
+                else if (right[rightIndex] == null) { rightIndex++; }
+                else if (left[leftIndex].GetTimesRented() >= right[rightIndex].GetTimesRented())
+                {
+                    movieArray[outIndex] = left[leftIndex];
+                    leftIndex++;
+                }
+                else
+                {
+                    movieArray[outIndex] = right[rightIndex];
+                    rightIndex++;
+                }
+                outIndex++;
+            }
+
+            while (leftIndex < left.Length)
+            {
+                movieArray[outIndex] = left[leftIndex];
+                leftIndex++;
+                outIndex++;
+            }
+            while(rightIndex < right.Length)
+            {
+                movieArray[outIndex] = right[rightIndex];
+                rightIndex++;
+                outIndex++;
+            }
+
+            return movieArray;
+        }
     }
 }

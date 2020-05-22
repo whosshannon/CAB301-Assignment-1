@@ -8,7 +8,7 @@ namespace Library_Program
 
         public MemberCollection()
         {
-            memberCollection = new Member[100];
+            memberCollection = new Member[10];
             numberOfMembers = 0;
             AddMember("John", "Smith", "1 Main Road, Brisbane", "0123456789", "0000");
         }

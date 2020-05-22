@@ -228,27 +228,81 @@ namespace Library_Program
             }
         }
 
-        /// <summary>
-        /// Prints the given BST through In Order Traversal
-        /// </summary>
+        public Node GetRoot()
+        {
+            return root;
+        }
+
+        public int GetLength(Node tNode)
+        {
+            int length = 0;
+            if (tNode != null)
+            {
+                length += GetLength(tNode.lChild);
+                if (tNode != null)
+                {
+                    length++;
+                }
+                length += GetLength(tNode.rChild);
+            }
+            return length;
+        }
+
         public void List()
         {
             //in order traversal
-            string list = InOrder(root);
-            Console.WriteLine(list);
+            Movie[] movieArray = InOrder(root);
+            foreach (Movie movie in movieArray)
+            {
+                Console.WriteLine(movie.DisplayMovie());
+            }
         }
 
-
-        public string InOrder(Node tNode)
+        public Movie[] InOrder(Node tNode)
         {
-            string list = "";
+            Movie[] movieArray = new Movie[GetLength(root)];
+            int index = 0;
+
             if (tNode != null)
             {
-                list += InOrder(tNode.lChild);
-                list += tNode.value.DisplayMovie() + "\n";
-                list += InOrder(tNode.rChild);
+                foreach (Movie movie in InOrder(tNode.lChild))
+                {
+                    if (movie != null) { movieArray[index++] = movie;}
+                }
+
+                movieArray[index++] = tNode.value;
+
+                foreach (Movie movie in InOrder(tNode.rChild))
+                {
+                    if (movie != null) { movieArray[index++] = movie; }
+                }
             }
-            return list;
+
+            //int j = 0;
+
+            //for (int i = 0; i < movieArray.Length; i++)
+            //{
+            //    if (movieArray[i] != null)
+            //    {
+            //        j++;
+            //    }
+            //}
+
+            //Movie[] newMovieArray = new Movie[j];
+            //int k = 0;
+
+            //for (int i = 0; i < movieArray.Length; i++)
+            //{
+            //    if (movieArray[i] != null)
+            //    {
+            //        newMovieArray[k] = movieArray[i];
+            //        k++;
+            //    }
+            //}
+
+            //return newMovieArray;
+            return movieArray;
         }
+
     }
 }

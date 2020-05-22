@@ -46,8 +46,8 @@ namespace Library_Program
                 else if (input == "2")
                 {
                     //Member
-                    MemberLogin();
-                    //ShowMemberMenu(memberCollection.FindMember("SmithJohn", "0000"));
+                    //MemberLogin();
+                    ShowMemberMenu(memberCollection.FindMember("SmithJohn", "0000"));
                 }
                 else
                 {
@@ -571,6 +571,7 @@ namespace Library_Program
                     //Display the 10 movies that have been rented the most
                     Console.Clear();
                     Console.WriteLine("Display top 10 most popular movies".PadLeft(60, '=').PadRight(120, '='));
+                    movieCollection.TopTenMovies();
                     Console.ReadKey();
                 }
                 else

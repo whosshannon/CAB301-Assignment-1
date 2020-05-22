@@ -362,10 +362,23 @@ namespace Library_Program_Test
     {
         MovieCollection movieCollection;
 
+        string name = "Harry Potter and the Philosopher's Stone";
+        string cast = "Daniel Radcliffe";
+        string director = "Chris Columbus";
+        int runtime = 159;
+        Movie.GenreType genre = Movie.GenreType.Adventure;
+        Movie.ClassificationType classification = Movie.ClassificationType.ParentalGuidance;
+        DateTime date = new DateTime(2001, 11, 16);
+        int copies = 6;
+        Movie harryPotter;
+
         [SetUp()]
         public void Setup()
         {
             movieCollection = new MovieCollection();
+            harryPotter = new Movie(name, cast, director, runtime, genre, classification, date, copies);
+            movieCollection.AddMovie(harryPotter);
+
         }
 
         [Test()]
@@ -381,11 +394,12 @@ namespace Library_Program_Test
             Assert.That(movieCollection != null);
         }
 
-        //[Test()]
-        //public void a()
-        //{
-        //    //
-        //}
+        [Test()]
+        public void MovieCollectionTopTen()
+        {
+            movieCollection.TopTenMovies();
+            Assert.That(1 != 2);
+        }
 
         //[Test()]
         //public void a()

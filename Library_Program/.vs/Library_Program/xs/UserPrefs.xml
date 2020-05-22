@@ -1,36 +1,21 @@
 ﻿<Properties StartupConfiguration="{9FE7BFFF-C693-4AC5-BF3F-0B8255A78E24}|Default">
   <MonoDevelop.Ide.ItemProperties.Library__Program PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Library_Program_Test/Test.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Library_Program/Program.cs">
     <Files>
-      <File FileName="Library_Program/Program.cs" Line="345" Column="62" />
-      <File FileName="Library_Program/MemberCollection.cs" Line="16" Column="99" />
-      <File FileName="Library_Program/Member.cs" Line="34" Column="10" />
-      <File FileName="Library_Program/MovieCollection.cs" Line="61" Column="27" />
-      <File FileName="Library_Program/Movie.cs" Line="120" Column="17" />
-      <File FileName="Library_Program_Test/Test.cs" Line="78" Column="44" />
+      <File FileName="Library_Program/Program.cs" Line="573" Column="43" />
+      <File FileName="Library_Program/MovieCollection.cs" />
+      <File FileName="Library_Program/BinarySearchTree.cs" />
+      <File FileName="Library_Program/Movie.cs" />
+      <File FileName="Library_Program_Test/Test.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Library_Program" expanded="True">
-            <Node name="Library_Program" expanded="True" />
-            <Node name="Library_Program_Test" expanded="True">
-              <Node name="Test.cs" selected="True" />
+            <Node name="Library_Program" expanded="True">
+              <Node name="Program.cs" selected="True" />
             </Node>
-          </Node>
-        </State>
-      </Pad>
-      <Pad Id="MonoDevelop.Debugger.WatchPad">
-        <State />
-      </Pad>
-      <Pad Id="MonoDevelop.UnitTesting.TestPad">
-        <State name="__root__">
-          <Node name="Library_Program" expanded="True">
-            <Node name="Library_Program_Test" expanded="True">
-              <Node name="Library_Program_Test" expanded="True">
-                <Node name="BinarySearchTreeTest" expanded="True" selected="True" />
-              </Node>
-            </Node>
+            <Node name="Library_Program_Test" expanded="True" />
           </Node>
         </State>
       </Pad>
